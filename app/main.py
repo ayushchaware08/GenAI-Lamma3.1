@@ -27,17 +27,31 @@ os.environ["USER_AGENT"] = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKi
 
 def createStreamlitApp(llm, portfolio, clean_text):
     st.title("Cold Email Generator")
+
+    # this block: to initialize the chat model only once (avoid caching issues)
+    if "chat_model" not in st.session_state:
+        from langchain_groq import ChatGroq
+        import os
+        st.session_state.chat_model = ChatGroq(
+            model='deepseek-r1-distill-llama-70b',
+            temperature=0.1,
+            api_key=os.environ["GROQ_API_KEY"]
+        )
+    model = st.session_state.chat_model
+
     url_input = st.text_input("Enter the URL:", value="https://www.google.com/about/careers/applications/jobs/results/110690555461018310-software-engineer-iii-infrastructure-core")
     submit_button = st.button("Submit")
 
     if submit_button:
-        try: 
+        try:
             loader = WebBaseLoader(url_input)
             data = clean_text(loader.load().pop().page_content)
             portfolio.load_portfolio()
             jobs = llm.extract_job(data)
             for job in jobs:
                 skills = job.get('skills', [])
+                if isinstance(skills, str):
+                    skills = [skills]
                 links = portfolio.query_links(skills)
                 email = llm.generate_email(job, links)
                 st.code(email, language='markdown')

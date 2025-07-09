@@ -1,27 +1,17 @@
-## web Scrapper for creating cold email wrt job description provided
-
-LLM API: GroqCloud
-vectorDatabase: chromadb / pinecone
-scrap data from website > using langchain web_base_Loader
-streamlit
-
-
-- [Web Base Loader](https://python.langchain.com/docs/integrations/document_loaders/web_base/#loader-features)
-- [ChromaDB](https://docs.trychroma.com/docs/overview/getting-started)
-- Streamlit
-- [dot environment](https://pypi.org/project/python-dotenv/)
-
 # Cold Email Generator for Job Descriptions 
 
 This project is a **web scraper and cold email generator** that leverages LLMs (via GroqCloud API), vector databases (ChromaDB), and Streamlit for a seamless user experience. It scrapes job descriptions from the web, extracts structured job information, matches your portfolio, and generates a personalized cold email for recruiters. Usefull tool for the job applicant to write cold Emails.
 
 ---
+## Screenshot
+
+---
 
 ## Features
 
-- **Web Scraping:** Extracts job descriptions from any public job posting using [LangChain's WebBaseLoader](https://python.langchain.com/docs/integrations/document_loaders/web_base/#loader-features).
+- **Web Scraping:** Extracts job descriptions from any public job posting using LangChain's WebBaseLoader.
 - **LLM Integration:** Uses GroqCloud's LLM API for job extraction and email generation.
-- **Portfolio Matching:** Stores your tech stack and portfolio links in [ChromaDB](https://docs.trychroma.com/docs/overview/getting-started) for relevant matching.
+- **Portfolio Matching:** Stores your tech stack and portfolio links in ChromaDB for relevant matching.
 - **Streamlit UI:** Simple web interface for inputting job URLs and viewing generated emails.
 - **Environment Management:** Uses `.env` for secure API key management.
 
@@ -70,6 +60,7 @@ This project is a **web scraper and cold email generator** that leverages LLMs (
 ## Tech Stack
 
 - [LangChain](https://python.langchain.com/) (WebBaseLoader, Prompting)
+- [LangChain WebBaseLoader](https://python.langchain.com/docs/integrations/document_loaders/web_base/#loader-features)
 - [GroqCloud LLM API](https://groq.com/)
 - [ChromaDB](https://www.trychroma.com/) (vector database)
 - [Streamlit](https://streamlit.io/) (UI)
